@@ -1,20 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { LogBox } from 'react-native';
+// import { useFonts, Nunito_400Regular } from '@expo-google-fonts/nunito';
+import { useFonts, Rajdhani_500Medium } from '@expo-google-fonts/rajdhani';
+import { ThemeProvider } from 'styled-components';
+import AppLoading from 'expo-app-loading';
+
+import MainNavigation from './src/routes';
+import theme from './src/global/styles/theme';
+
+LogBox.ignoreLogs(['expo-app-loading is deprecated']);
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    // Nunito_400Regular,
+    Rajdhani_500Medium
+  })
+
+
+  if (!fontsLoaded) {
+    return <AppLoading />
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ThemeProvider theme={theme}>
+      <MainNavigation />
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
