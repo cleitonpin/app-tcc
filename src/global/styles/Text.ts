@@ -11,17 +11,21 @@ type TextProps = {
   padding?: string;
   lineHeight?: number;
   letterSpacing?: string;
+  width?: string;
 }
 
-export const Text: StyledComponent<typeof TextNative, DefaultTheme, TextProps, never> = styled.Text<TextProps>`
+const Text: StyledComponent<typeof TextNative, DefaultTheme, TextProps, never> = styled.Text<TextProps>`
   font-size: ${props => props.fontSize || '16px'};
   font-family: 'Rajdhani_500Medium';
   font-weight: ${props => props.fontWeight || 'normal'};
+  text-align: ${props => props.textAlign || 'left'};
+  width: ${props => props.width || 'auto'};
   /* line-height: ${props => props.lineHeight || 24}; */
   /*color: ${props => props.color || '#000'};
-  text-align: ${props => props.textAlign || 'left'};
   margin: ${props => props.margin || '0'};
   padding: ${props => props.padding || '0'};
   letter-spacing: ${props => props.letterSpacing || 'normal'}; */
   color: ${({ color }) => color};
 `
+
+export default Text;

@@ -24,6 +24,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <MainNavigation />
+      <StatusBar style="light" />
     </ThemeProvider>
   );
 }

@@ -1,4 +1,4 @@
-import { Text } from "../../global/styles/Text";
+import { Text } from "../../global/styles";
 import { Box, Rectangle, TextsContainer } from "./styles";
 import Entypo from "react-native-vector-icons/Entypo"
 import { TouchableOpacity } from "react-native";

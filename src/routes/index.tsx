@@ -2,30 +2,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
 import { Text, View } from 'react-native';
+import Welcome from '../screens/Welcome';
 import TabNavigation from './TabNavigation';
-
-// screens
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home!</Text>
-    </View>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
 
 interface MainNavigationProps {
 }
 
 export type StackParams = {
   tabNavigation: undefined;
+  welcome: undefined;
 }
 
 const Stack = createStackNavigator<StackParams>();
@@ -37,6 +22,7 @@ const MainNavigation: React.FC<MainNavigationProps> = () => {
         headerShown: false,
         animationEnabled: true,
       }} >
+        <Stack.Screen name="welcome" component={Welcome} />
         <Stack.Screen name="tabNavigation" component={TabNavigation} options={{ cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS }} />
         {/* <Stack.Screen name="loginSave" component={HomeScreen} /> */}
       </Stack.Navigator>
