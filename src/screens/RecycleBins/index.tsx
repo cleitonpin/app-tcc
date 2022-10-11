@@ -1,6 +1,6 @@
 import Background from "../../components/Container";
 import Ecopoint from "../../components/Ecopoint";
-import { Text } from "../../global/styles/Text";
+import { Text } from "../../global/styles";
 import { Container } from "./style";
 import { ScrollView } from "react-native"
 

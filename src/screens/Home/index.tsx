@@ -43,6 +43,8 @@ const CARDS = [
 ]
 
 const renderContent = (key: number, location: Location.LocationObject) => {
+  console.log(location.coords)
+
   switch (key) {
     case 1: return <DisposalIncorrect />
     case 2: return <Friends />
@@ -60,8 +62,8 @@ const renderContent = (key: number, location: Location.LocationObject) => {
           <MapView
             style={{ width: 300, height: 400, marginTop: 20 }}
             initialRegion={{
-              latitude: location.coords.latitude,
-              longitude: location.coords.longitude,
+              latitude: location.coords.latitude || 1,
+              longitude: location.coords.longitude || 1,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
             }}
@@ -89,6 +91,7 @@ const Home: React.FC<HomeProps> = () => {
         setErrorMsg('Permission to access location was denied');
         return;
       }
+
   
       let location = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Highest });
       setLocation(location);
