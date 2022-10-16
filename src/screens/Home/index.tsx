@@ -22,22 +22,27 @@ const CARDS = [
   {
     title: "Descarte Incorreto",
     value: 1,
+    icon: require("../../assets/recycling.png"),
   },
   {
     title: "Amigos do meio ambiente",
     value: 2,
+    icon: require("../../assets/gardening.png"),
   },
   {
     title: "Conheça seus direitos",
     value: 3,
+    icon: require("../../assets/eye.png"),
   },
   {
     title: "Reciclagem",
     value: 4,
+    icon: require("../../assets/recycle.png"),
   },
   {
     title: "Logística reversa",
     value: 5,
+    icon: require("../../assets/reverse.png"),
   },
 ];
 
@@ -62,8 +67,6 @@ const renderContent = (key: number) => {
             Veja os locais de descarte mais próximos a você
           </Text>
 
-          {/* MAP VIEW */}
-          {/* <Image source={require("../../assets/Map.png")} style={{ width: 300, height: 400, marginTop: 20 }}/> */}
           <MapView
             style={{ width: "auto", height: "80%", marginTop: 20 }}
             initialRegion={{
@@ -73,7 +76,6 @@ const renderContent = (key: number) => {
               longitudeDelta: 0.0421,
             }}
           />
-          {/* MAP VIEW */}
         </View>
       );
   }
@@ -82,11 +84,6 @@ const renderContent = (key: number) => {
 const Home: React.FC<HomeProps> = () => {
   const [key, setKey] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
-
-  const [location, setLocation] = useState<Location.LocationObject>(
-    {} as Location.LocationObject
-  );
-  const [errorMsg, setErrorMsg] = useState<string>("");
 
   return (
     <Background>
@@ -109,6 +106,7 @@ const Home: React.FC<HomeProps> = () => {
                 onPress={() =>
                   card.value === 5 ? setModalVisible(true) : setKey(card.value)
                 }
+                source={card.icon}
               />
             ))}
           </ScrollView>

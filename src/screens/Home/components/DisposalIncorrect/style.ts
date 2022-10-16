@@ -1,14 +1,14 @@
-import styled from 'styled-components/native'
+import styled from "styled-components/native";
 
 export const Box = styled.View`
-  background: #DADADC;
+  background: #dadadc;
   border-radius: 4px;
   margin-top: 4.5px;
-`
+`;
 
 export const Content = styled.View`
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 16px;
-`
+`;

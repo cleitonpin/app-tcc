@@ -1,6 +1,6 @@
-import { View, Image as Img, StyleSheet } from "react-native"
-import styled from "styled-components/native"
-import { Text, Image } from "../../../../global/styles"
+import { View, Image as Img, StyleSheet } from "react-native";
+import styled from "styled-components/native";
+import { Text, Image } from "../../../../global/styles";
 
 const Box = styled.View`
   height: 92px;
@@ -10,21 +10,21 @@ const Box = styled.View`
   justify-content: center;
   align-items: center;
   margin-top: 10px;
-`
+`;
 
 export const Container = styled.View`
   margin-top: 10px;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex: 1;
-`
+`;
 
 const Friends: React.FC<any> = () => {
   return (
     <Container>
-      <Text         
-        textAlign="center" 
-        fontSize="18px" 
+      <Text
+        textAlign="center"
+        fontSize="18px"
         color="white"
         fontWeight="bold"
         style={{ lineHeight: 18 }}
@@ -34,24 +34,21 @@ const Friends: React.FC<any> = () => {
 
       {/* <Image  style={{ marginTop: 20 }} source={require("../../../../assets/pills.png")} /> */}
 
-      <View style={{ justifyContent: 'center', alignItems: 'center', }}>
-        <Img  style={{ marginTop: 20 }} source={require("../../../../assets/pills.png")} />
+      <View style={{ justifyContent: "center", alignItems: "center" }}>
+        <Img
+          style={{ marginTop: 20 }}
+          source={require("../../../../assets/pills.png")}
+        />
       </View>
 
       <Box>
         <Text textAlign="center" color="white">
-          Aquelas que recebem os medicamentos 
-          vencidos ou em desuso da população. 
+          Aquelas que recebem os medicamentos vencidos ou em desuso da
+          população.
         </Text>
       </Box>
     </Container>
-  )
-}
+  );
+};
 
-const style = StyleSheet.create({
-  image: {
-    margin: 10,
-  }
-})
-
-export default Friends
+export default Friends;

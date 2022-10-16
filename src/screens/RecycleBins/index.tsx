@@ -6,6 +6,7 @@ import { ScrollView } from "react-native";
 import { useEffect, useState } from "react";
 import { FranchiseData, getFranchises } from "../../services/franchises";
 import { useNavigation } from "@react-navigation/native";
+import { franchises } from "../../mocks/franchises";
 
 interface RecycleBinsProps {}
 
@@ -14,9 +15,8 @@ const RecycleBins: React.FC<RecycleBinsProps> = () => {
   const [loading, setLoading] = useState(true);
 
   const fetchEcopoints = async () => {
-    const response = await getFranchises();
-    setEcopoints(response);
-    console.log(response);
+    // const response = await getFranchises();
+    setEcopoints(franchises);
     setLoading(false);
   };
 

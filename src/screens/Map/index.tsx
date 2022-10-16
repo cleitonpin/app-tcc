@@ -4,6 +4,7 @@ import { View } from "react-native";
 import { useEffect, useState } from "react";
 import { FranchiseData, getFranchises } from "../../services/franchises";
 import { useNavigation } from "@react-navigation/native";
+import { franchises } from "../../mocks/franchises";
 
 const Map: React.FC<any> = ({ route }) => {
   const [location, setLocation] = useState<Location.LocationObject | null>(
@@ -11,7 +12,6 @@ const Map: React.FC<any> = ({ route }) => {
   );
   const [ecopoints, setEcopoints] = useState<FranchiseData>();
   // const [loading, setLoading] = useState(true);
-  const navigation = useNavigation();
 
   useEffect(() => {
     (async () => {
@@ -20,8 +20,9 @@ const Map: React.FC<any> = ({ route }) => {
         accuracy: Location.Accuracy.Highest,
       });
 
-      const response = await getFranchises();
-      setEcopoints(response);
+      // const response = await getFranchises();
+
+      setEcopoints(franchises);
       // setLoading(false);
       setLocation(location);
     })();
