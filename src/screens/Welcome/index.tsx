@@ -2,11 +2,31 @@ import { Image } from "react-native";
 import Background from "../../components/Container";
 import { Text } from "../../global/styles";
 import theme from "../../global/styles/theme";
+import * as Location from "expo-location";
+import { useEffect } from "react"
 
 import AntDesign from "react-native-vector-icons/AntDesign"
 import { Btn, BtnContent, BtnIconCont, BtnText, BtnTextCont, Container, Title } from "./style";
 
 const Welcome: React.FC<any> = ({ navigation }) => {
+
+  const getLocation = async () => {
+    try {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        // setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  useEffect(() => {
+    getLocation()
+  }, []);
+
   return (
     <Background>
       <Container>

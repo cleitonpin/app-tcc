@@ -1,35 +1,18 @@
-import { Text, View } from "react-native"
+import { Text, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Icon from "react-native-vector-icons/Entypo"
-import EvilIcon from "react-native-vector-icons/Ionicons"
+import Icon from "react-native-vector-icons/Entypo";
+import EvilIcon from "react-native-vector-icons/Ionicons";
 
 // screens
 import RecycleBins from "../screens/RecycleBins";
 import Home from "../screens/Home";
+import Map from "../screens/Map";
 
 const Tab = createBottomTabNavigator();
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
-
-function SettingsScreen2() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings22222222!</Text>
-    </View>
-  );
-}
-
 export default function TabNavigation() {
   return (
-    <Tab.Navigator
-      screenOptions={{ headerShown: false,  }}
-    >
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen
         name="RecycleBins"
         component={RecycleBins}
@@ -49,13 +32,24 @@ export default function TabNavigation() {
         }}
       />
       <Tab.Screen
-        name="Setting2s"
-        component={SettingsScreen2}
+        name="Map"
+        component={Map}
         options={{
           tabBarIcon: () => <Icon name="map" size={25} />,
           headerShown: false,
           tabBarShowLabel: false,
         }}
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            e.preventDefault();
+            navigation.setParams({
+              name: undefined,
+              lat: undefined,
+              long: undefined,
+            });
+            navigation.navigate("Map");
+          },
+        })}
       />
     </Tab.Navigator>
   );
