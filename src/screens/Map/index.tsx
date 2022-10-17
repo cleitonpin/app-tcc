@@ -5,28 +5,11 @@ import { useEffect, useState } from "react";
 import { FranchiseData, getFranchises } from "../../services/franchises";
 import { useNavigation } from "@react-navigation/native";
 import { franchises } from "../../mocks/franchises";
+import useGetLocation from "../../hooks/useGetLocation";
 
 const Map: React.FC<any> = ({ route }) => {
-  const [location, setLocation] = useState<Location.LocationObject | null>(
-    null
-  );
-  const [ecopoints, setEcopoints] = useState<FranchiseData>();
-  // const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    (async () => {
-      console.log("entrou");
-      let location = await Location.getCurrentPositionAsync({
-        accuracy: Location.Accuracy.Highest,
-      });
-
-      // const response = await getFranchises();
-
-      setEcopoints(franchises);
-      // setLoading(false);
-      setLocation(location);
-    })();
-  }, []);
+  const location = useGetLocation();
+  const [ecopoints, setEcopoints] = useState<FranchiseData>(franchises);
 
   return (
     <View>

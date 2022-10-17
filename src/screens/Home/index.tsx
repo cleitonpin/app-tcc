@@ -1,9 +1,9 @@
 import { Text } from "../../global/styles";
 import { View } from "react-native";
-import { ScrollView, StyleSheet, Modal } from "react-native";
+import { ScrollView, StyleSheet, Modal, ActivityIndicator } from "react-native";
 import { useState, useEffect } from "react";
 import Feather from "react-native-vector-icons/Feather";
-import MapView from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 
 // components
@@ -15,6 +15,7 @@ import Friends from "./components/Friends";
 import Justice from "./components/Justice";
 import Recycling from "./components/Recycling";
 import { ModalContent, ModalView } from "./style";
+import useGetLocation from "../../hooks/useGetLocation";
 
 interface HomeProps {}
 
@@ -46,7 +47,10 @@ const CARDS = [
   },
 ];
 
-const renderContent = (key: number) => {
+const renderContent = (
+  key: number,
+  location: Location.LocationObject | null
+) => {
   switch (key) {
     case 1:
       return <DisposalIncorrect />;
@@ -67,15 +71,28 @@ const renderContent = (key: number) => {
             Veja os locais de descarte mais próximos a você
           </Text>
 
-          <MapView
-            style={{ width: "auto", height: "80%", marginTop: 20 }}
-            initialRegion={{
-              latitude: -23.5505,
-              longitude: -46.6333,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-            }}
-          />
+          {location ? (
+            <MapView
+              style={{ width: "auto", height: "80%", marginTop: 20 }}
+              initialRegion={{
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+              }}
+            >
+              <Marker
+                coordinate={{
+                  latitude: location.coords.latitude,
+                  longitude: location.coords.longitude,
+                }}
+                title={"Você"}
+                description={"Sua localização"}
+              />
+            </MapView>
+          ) : (
+            <ActivityIndicator size="large" color="#fff" />
+          )}
         </View>
       );
   }
@@ -84,13 +101,14 @@ const renderContent = (key: number) => {
 const Home: React.FC<HomeProps> = () => {
   const [key, setKey] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
+  const location = useGetLocation();
 
   return (
     <Background>
       <Container p={25} mTop={35}>
-        {renderContent(key)}
+        {renderContent(key, location)}
 
-        <View>
+        <View style={{ width: "100%" }}>
           <Text fontSize="24px" color="white" style={{ marginTop: 10 }}>
             Curiosidades
           </Text>

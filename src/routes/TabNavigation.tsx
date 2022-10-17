@@ -20,6 +20,23 @@ export default function TabNavigation() {
           backgroundColor: "#175BA5",
           borderTopWidth: 0,
         },
+        tabBarShowLabel: false,
+        tabBarInactiveTintColor: "#fff",
+        // tabBarActiveTintColor: "yellow",
+        tabBarVisibilityAnimationConfig: {
+          hide: {
+            animation: "timing",
+            config: {
+              duration: 500,
+            },
+          },
+          show: {
+            animation: "timing",
+            config: {
+              duration: 500,
+            },
+          },
+        },
       }}
       initialRouteName="Home"
     >
@@ -27,8 +44,8 @@ export default function TabNavigation() {
         name="RecycleBins"
         component={RecycleBins}
         options={{
-          tabBarIcon: () => (
-            <EvilIcon name="location-sharp" size={25} color="white" />
+          tabBarIcon: ({ color, size }) => (
+            <EvilIcon name="location-sharp" size={size} color={color} />
           ),
           headerShown: false,
           tabBarShowLabel: false,
@@ -38,9 +55,12 @@ export default function TabNavigation() {
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: () => <Icon name="home" size={25} color="white" />,
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="home" size={size} color={color} />
+          ),
           headerShown: false,
           tabBarShowLabel: false,
+          // tabBarBadge: 3,
           // tabBarActiveTintColor: "#000",
         }}
         listeners={({ navigation }) => ({
@@ -60,7 +80,9 @@ export default function TabNavigation() {
         name="Map"
         component={Map}
         options={{
-          tabBarIcon: () => <Icon name="map" size={25} color="white" />,
+          tabBarIcon: ({ color, size }) => (
+            <Icon name="map" size={size} color={color} />
+          ),
           headerShown: false,
           tabBarShowLabel: false,
         }}
