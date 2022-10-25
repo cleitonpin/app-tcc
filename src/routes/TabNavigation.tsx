@@ -8,6 +8,7 @@ import RecycleBins from "../screens/RecycleBins";
 import Home from "../screens/Home";
 import Map from "../screens/Map";
 import Background from "../components/Container";
+import { CommonActions } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
@@ -50,6 +51,20 @@ export default function TabNavigation() {
           headerShown: false,
           tabBarShowLabel: false,
         }}
+        listeners={({ navigation, route }) => ({
+          tabPress: (e) => {
+            // Prevent default action
+            e.preventDefault();
+
+            // Do something with the `navigation` object
+            navigation.dispatch(
+              CommonActions.reset({
+                index: 0,
+                routes: [{ name: "RecycleBins" }],
+              })
+            );
+          },
+        })}
       />
       <Tab.Screen
         name="Home"
@@ -63,18 +78,6 @@ export default function TabNavigation() {
           // tabBarBadge: 3,
           // tabBarActiveTintColor: "#000",
         }}
-        listeners={({ navigation }) => ({
-          tabPress: (e) => {
-            console.log("oi");
-            e.preventDefault();
-
-            // reset states from page home
-
-            // navigation.popToTop();
-
-            navigation.navigate("Home");
-          },
-        })}
       />
       <Tab.Screen
         name="Map"

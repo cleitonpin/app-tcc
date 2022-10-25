@@ -6,10 +6,13 @@ export interface FranchiseData {
     longitude: number;
     companyName: string;
     street: string;
+    distance?: number;
   }[];
 }
 
-export const getFranchises = async (): Promise<FranchiseData> => {
-  const response = await api.get("/franchises");
+export const getFranchises = async (
+  filter?: string
+): Promise<FranchiseData> => {
+  const response = await api.get(`/franchises?order=${filter}`);
   return response.data;
 };

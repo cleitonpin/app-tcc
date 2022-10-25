@@ -1,12 +1,11 @@
-import { Text } from "../../global/styles";
 import { View } from "react-native";
-import { ScrollView, StyleSheet, Modal, ActivityIndicator } from "react-native";
-import { useState, useEffect } from "react";
+import { ScrollView, StyleSheet, Modal } from "react-native";
+import { useState } from "react";
 import Feather from "react-native-vector-icons/Feather";
-import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 
 // components
+import { Text } from "../../global/styles";
 import { Container } from "../RecycleBins/style";
 import Background from "../../components/Container";
 import Card from "../../components/Card";
@@ -16,6 +15,7 @@ import Justice from "./components/Justice";
 import Recycling from "./components/Recycling";
 import { ModalContent, ModalView } from "./style";
 import useGetLocation from "../../hooks/useGetLocation";
+import { DefaultPage } from "./components/DefaultPage";
 
 interface HomeProps {}
 
@@ -52,6 +52,8 @@ const renderContent = (
   location: Location.LocationObject | null
 ) => {
   switch (key) {
+    case 0:
+      return <DefaultPage location={location} />;
     case 1:
       return <DisposalIncorrect />;
     case 2:
@@ -62,46 +64,25 @@ const renderContent = (
       return <Recycling />;
 
     default:
-      return (
-        <View style={{ flex: 1 }}>
-          <Text fontSize="24px" color="white">
-            Localização
-          </Text>
-          <Text fontSize="12px" color="white">
-            Veja os locais de descarte mais próximos a você
-          </Text>
-
-          {location ? (
-            <MapView
-              style={{ width: "auto", height: "80%", marginTop: 20 }}
-              initialRegion={{
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
-              }}
-            >
-              <Marker
-                coordinate={{
-                  latitude: location.coords.latitude,
-                  longitude: location.coords.longitude,
-                }}
-                title={"Você"}
-                description={"Sua localização"}
-              />
-            </MapView>
-          ) : (
-            <ActivityIndicator size="large" color="#fff" />
-          )}
-        </View>
-      );
+      return <Text>Erro</Text>;
   }
 };
 
 const Home: React.FC<HomeProps> = () => {
   const [key, setKey] = useState(0);
+  const [selectedKey, setSelectedKey] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
   const location = useGetLocation();
+
+  const onCardPress = (key: number) => {
+    if (key === selectedKey) {
+      setKey(0);
+      setSelectedKey(0);
+    } else {
+      key === 5 ? setModalVisible(true) : setKey(key);
+      setSelectedKey(key);
+    }
+  };
 
   return (
     <Background>
@@ -121,9 +102,7 @@ const Home: React.FC<HomeProps> = () => {
               <Card
                 key={index}
                 title={card.title}
-                onPress={() =>
-                  card.value === 5 ? setModalVisible(true) : setKey(card.value)
-                }
+                onPress={() => onCardPress(card.value)}
                 source={card.icon}
               />
             ))}

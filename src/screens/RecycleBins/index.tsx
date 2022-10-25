@@ -1,60 +1,136 @@
+import { ScrollView, View } from "react-native";
+import { useCallback, useEffect, useState } from "react";
+import { Picker as SelectPicker } from "@react-native-picker/picker";
+import { FranchiseData, getFranchises } from "../../services/franchises";
+import { franchises } from "../../mocks/franchises";
+import { calculateDistanceBetweenTwoCoordinates } from "../../utils";
+
+import { Text } from "../../global/styles";
 import Background from "../../components/Container";
 import Ecopoint from "../../components/Ecopoint";
-import { Text } from "../../global/styles";
-import { Container } from "./style";
-import { ScrollView } from "react-native";
-import { useEffect, useState } from "react";
-import { FranchiseData, getFranchises } from "../../services/franchises";
-import { useNavigation } from "@react-navigation/native";
-import { franchises } from "../../mocks/franchises";
+import useGetLocation from "../../hooks/useGetLocation";
+
+import { Container, Header, HeaderTitle } from "./style";
+import { Loader } from "../../components/Loader";
+import { fetchRoute } from "../../services/google";
 
 interface RecycleBinsProps {}
 
 const RecycleBins: React.FC<RecycleBinsProps> = () => {
+  const location = useGetLocation();
+
   const [ecopoints, setEcopoints] = useState<FranchiseData>();
   const [loading, setLoading] = useState(true);
+  const [selectedFilter, setSelectedFilter] = useState("");
 
   const fetchEcopoints = async () => {
-    // const response = await getFranchises();
-    setEcopoints(franchises);
+    setLoading(true);
+    const franchisesApi = await getFranchises(selectedFilter);
+
+    if (!location) return;
+
+    // const coordinates = await fetchRoute(
+    //   `${location?.coords.latitude}, ${location?.coords.longitude}`,
+    //   `${route?.params?.lat}, ${route?.params?.long}`
+    // );
+
+    const data = franchises.franchises
+      .map((ecopoint) => {
+        const coords = {
+          myLocation: {
+            lat: location.coords.latitude,
+            lng: location.coords.longitude,
+          },
+          ecopointLocation: {
+            lat: ecopoint.latitude,
+            lng: ecopoint.longitude,
+          },
+        };
+
+        const distance = calculateDistanceBetweenTwoCoordinates(
+          coords.myLocation,
+          coords.ecopointLocation
+        );
+
+        return {
+          ...ecopoint,
+          distance,
+        };
+      })
+      .sort((a, b) => a.distance - b.distance);
+
+    setEcopoints({
+      franchises: data,
+    });
     setLoading(false);
   };
 
   useEffect(() => {
     fetchEcopoints();
-  }, []);
-
-  if (loading) {
-    return (
-      <Container p={25}>
-        <Text fontSize="24px" color="white">
-          Carregando...
-        </Text>
-      </Container>
-    );
-  }
+  }, [selectedFilter, location]);
 
   return (
     <Background>
       <Container p={25} mTop={50}>
-        <Text fontSize="24px" color="white">
-          Ecopontos
-        </Text>
-        <Text fontSize="12px" color="white">
-          Locais
-        </Text>
+        <Header>
+          <HeaderTitle>
+            <Text fontSize="24px" color="white">
+              Ecopontos
+            </Text>
+            <Text fontSize="12px" color="white">
+              Locais
+            </Text>
+          </HeaderTitle>
 
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {ecopoints?.franchises.map((ecopoint, index) => (
-            <Ecopoint
-              key={index}
-              name={ecopoint.companyName}
-              address={ecopoint.street}
-              lat={ecopoint.latitude}
-              long={ecopoint.longitude}
-            />
-          ))}
-        </ScrollView>
+          <View
+            style={{
+              borderWidth: 1.5,
+              borderColor: "#EDF6F9",
+              borderRadius: 4,
+            }}
+          >
+            <SelectPicker
+              selectedValue={selectedFilter}
+              style={{
+                width: 170,
+                backgroundColor: "#EDF6F9",
+                justifyContent: "center",
+              }}
+              itemStyle={{
+                marginLeft: 30,
+              }}
+              onValueChange={(itemValue) => setSelectedFilter(itemValue)}
+            >
+              <SelectPicker.Item
+                label="Mais próximos"
+                value="closest"
+                style={{ fontSize: 14 }}
+              />
+              <SelectPicker.Item
+                label="Alfabetica"
+                value="name-asc"
+                style={{ fontSize: 14 }}
+              />
+            </SelectPicker>
+          </View>
+        </Header>
+
+        {loading || !location ? (
+          <Loader />
+        ) : (
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {ecopoints?.franchises.map((ecopoint, index) => (
+              <Ecopoint
+                key={index}
+                name={ecopoint.companyName}
+                address={ecopoint.street}
+                lat={ecopoint.latitude}
+                long={ecopoint.longitude}
+                distance={ecopoint.distance || 0}
+              />
+            ))}
+          </ScrollView>
+        )}
       </Container>
     </Background>
   );
