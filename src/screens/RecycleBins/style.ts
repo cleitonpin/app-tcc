@@ -24,3 +24,10 @@ export const HeaderTitle = styled.View`
   flex-direction: column;
   justify-content: space-between;
 `;
+
+export const PickerWrapper = styled.View`
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+`;

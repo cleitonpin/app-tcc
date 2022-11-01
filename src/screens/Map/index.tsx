@@ -1,19 +1,33 @@
-import MapView, { Marker, Polyline } from "react-native-maps";
+import MapView, { Marker, Polyline, Callout } from "react-native-maps";
 import * as Location from "expo-location";
-import { View } from "react-native";
-import { useEffect, useState } from "react";
+import { TouchableHighlight, View } from "react-native";
+import { Fragment, useEffect, useState } from "react";
 import { FranchiseData, getFranchises } from "../../services/franchises";
 import { useNavigation } from "@react-navigation/native";
 import { franchises } from "../../mocks/franchises";
 import useGetLocation from "../../hooks/useGetLocation";
 import { fetchRoute } from "../../services/google";
+import { Text } from "../../global/styles";
 
-const Map: React.FC<any> = ({ route }) => {
+interface MapProps {
+  route?: {
+    params: {
+      lat: number;
+      long: number;
+      name: string;
+    };
+  };
+  height?: number | string;
+}
+
+const Map: React.FC<MapProps> = ({ route, height }) => {
   const location = useGetLocation();
   const [ecopoints, setEcopoints] = useState<FranchiseData>(franchises);
   const [routeCoordinates, setRouteCoordinates] = useState<any>([]);
 
   const waitLocation = async () => {
+    if (!route) return;
+
     const coordinates = await fetchRoute(
       `${location?.coords.latitude}, ${location?.coords.longitude}`,
       `${route?.params?.lat}, ${route?.params?.long}`
@@ -32,7 +46,7 @@ const Map: React.FC<any> = ({ route }) => {
     <View>
       {location && (
         <MapView
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: height || "100%" }}
           initialRegion={{
             latitude: route?.params?.lat ?? location.coords.latitude,
             longitude: route?.params?.long ?? location.coords.longitude,
@@ -40,21 +54,33 @@ const Map: React.FC<any> = ({ route }) => {
             longitudeDelta: 0.0421,
           }}
         >
-          {!route.params ? (
-            ecopoints?.franchises.map((ecopoint, index) => (
+          {!route?.params ? (
+            <Fragment>
               <Marker
-                draggable
-                key={index}
                 coordinate={{
-                  latitude: ecopoint.latitude,
-                  longitude: ecopoint.longitude,
+                  latitude: location.coords.latitude,
+                  longitude: location.coords.longitude,
                 }}
-                title={ecopoint.companyName}
-                description={"franqffuia"}
+                title="Você está aqui"
               />
-            ))
+              {ecopoints?.franchises.map((ecopoint, index) => (
+                <Marker
+                  draggable
+                  key={index}
+                  coordinate={{
+                    latitude: ecopoint.latitude,
+                    longitude: ecopoint.longitude,
+                  }}
+                  title={ecopoint.companyName}
+                  onPress={() => {
+                    console.log(ecopoint);
+                  }}
+                  // description={"franqffuia"}
+                />
+              ))}
+            </Fragment>
           ) : (
-            <>
+            <Fragment>
               <Polyline coordinates={[...routeCoordinates]} strokeWidth={4} />
               <Marker
                 coordinate={{
@@ -72,7 +98,7 @@ const Map: React.FC<any> = ({ route }) => {
                 title={"Você"}
                 description={"Sua localização"}
               />
-            </>
+            </Fragment>
           )}
         </MapView>
       )}
