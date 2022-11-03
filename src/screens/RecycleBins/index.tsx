@@ -25,7 +25,7 @@ const RecycleBins: React.FC<RecycleBinsProps> = () => {
 
   const fetchEcopoints = async () => {
     setLoading(true);
-    const franchisesApi = await getFranchises();
+    // const franchisesApi = await getFranchises();
 
     if (!location) return;
 
