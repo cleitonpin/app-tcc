@@ -1,13 +1,12 @@
-import MapView, { Marker, Polyline, Callout } from "react-native-maps";
-import * as Location from "expo-location";
-import { TouchableHighlight, View } from "react-native";
+import MapView, { Marker, Polyline } from "react-native-maps";
+import { View } from "react-native";
 import { Fragment, useEffect, useState } from "react";
 import { FranchiseData, getFranchises } from "../../services/franchises";
-import { useNavigation } from "@react-navigation/native";
+
 import { franchises } from "../../mocks/franchises";
 import useGetLocation from "../../hooks/useGetLocation";
 import { fetchRoute } from "../../services/google";
-import { Text } from "../../global/styles";
+import { Loader } from "../../components/Loader";
 
 interface MapProps {
   route?: {
@@ -22,18 +21,28 @@ interface MapProps {
 
 const Map: React.FC<MapProps> = ({ route, height }) => {
   const location = useGetLocation();
-  const [ecopoints, setEcopoints] = useState<FranchiseData>(franchises);
+  const [loading, setLoading] = useState(true);
+  const [ecopoints, setEcopoints] = useState<FranchiseData>();
   const [routeCoordinates, setRouteCoordinates] = useState<any>([]);
 
   const waitLocation = async () => {
-    if (!route) return;
+    try {
+      setLoading(true);
+      if (route?.params) {
+        const coordinates = await fetchRoute(
+          `${location?.coords.latitude}, ${location?.coords.longitude}`,
+          `${route?.params?.lat}, ${route?.params?.long}`
+        );
+        setRouteCoordinates(coordinates.points);
+      }
 
-    const coordinates = await fetchRoute(
-      `${location?.coords.latitude}, ${location?.coords.longitude}`,
-      `${route?.params?.lat}, ${route?.params?.long}`
-    );
-
-    setRouteCoordinates(coordinates.points);
+      const franchisesApi = await getFranchises();
+      setEcopoints(franchisesApi);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -41,6 +50,8 @@ const Map: React.FC<MapProps> = ({ route, height }) => {
 
     waitLocation();
   }, [location]);
+
+  if (loading) return <Loader />;
 
   return (
     <View>
@@ -88,7 +99,7 @@ const Map: React.FC<MapProps> = ({ route, height }) => {
                   longitude: route.params.long,
                 }}
                 title={route.params.name}
-                description={"franquia"}
+                description={"Franquia"}
               />
               <Marker
                 coordinate={{

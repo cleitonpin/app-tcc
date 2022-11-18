@@ -1,3 +1,5 @@
+import { APP_ENV_GOOGLE_API_KEY } from "@env";
+
 const decode = (t: any, e?: any) => {
   for (
     var n,
@@ -28,16 +30,13 @@ const decode = (t: any, e?: any) => {
     return { latitude: t[0], longitude: t[1] };
   }));
 };
-// transforms something like this geocFltrhVvDsEtA}ApSsVrDaEvAcBSYOS_@... to an array of coordinates
-
-const GOOGLE_API_KEY = "AIzaSyDTzZPR-zzATP1d_odo0S2urNZCP3HlfnY";
 
 export const fetchRoute = async (
   origin: string,
   destination: string,
   mode?: string
 ) => {
-  const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${GOOGLE_API_KEY}&mode${
+  const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${APP_ENV_GOOGLE_API_KEY}&mode${
     mode || "driving"
   }`;
   const response = await fetch(url);

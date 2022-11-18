@@ -13,6 +13,6 @@ export interface FranchiseData {
 export const getFranchises = async (
   filter?: string
 ): Promise<FranchiseData> => {
-  const response = await api.get(`/franchises?order=${filter}`);
+  const response = await api.get(`/franchises`);
   return response.data;
 };

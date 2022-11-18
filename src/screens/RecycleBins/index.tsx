@@ -1,6 +1,5 @@
-import { ScrollView, View } from "react-native";
-import { useCallback, useEffect, useState } from "react";
-import { Picker as SelectPicker } from "@react-native-picker/picker";
+import { ScrollView } from "react-native";
+import { useEffect, useState } from "react";
 import { FranchiseData, getFranchises } from "../../services/franchises";
 import { franchises } from "../../mocks/franchises";
 import { calculateDistanceBetweenTwoCoordinates } from "../../utils";
@@ -10,9 +9,8 @@ import Background from "../../components/Container";
 import Ecopoint from "../../components/Ecopoint";
 import useGetLocation from "../../hooks/useGetLocation";
 
-import { Container, Header, HeaderTitle, PickerWrapper } from "./style";
+import { Container, Header, HeaderTitle } from "./style";
 import { Loader } from "../../components/Loader";
-import { fetchRoute } from "../../services/google";
 
 interface RecycleBinsProps {}
 
@@ -25,11 +23,11 @@ const RecycleBins: React.FC<RecycleBinsProps> = () => {
 
   const fetchEcopoints = async () => {
     setLoading(true);
-    // const franchisesApi = await getFranchises();
+    const franchisesApi = await getFranchises();
 
     if (!location) return;
 
-    const data = franchises.franchises
+    const data = franchisesApi.franchises
       .map((ecopoint) => {
         const coords = {
           myLocation: {
@@ -42,13 +40,6 @@ const RecycleBins: React.FC<RecycleBinsProps> = () => {
           },
         };
 
-        // const coordinates = await fetchRoute(
-        //   `${location?.coords.latitude}, ${location?.coords.longitude}`,
-        //   `${ecopoint.latitude}, ${ecopoint.longitude}`
-        // );
-
-        // console.log(coordinates.data.routes[0].legs[0].distance.text);
-
         const distance = calculateDistanceBetweenTwoCoordinates(
           coords.myLocation,
           coords.ecopointLocation
@@ -60,11 +51,6 @@ const RecycleBins: React.FC<RecycleBinsProps> = () => {
         };
       })
       .sort((a, b) => a.distance - b.distance);
-    // .sort((a, b) =>
-    //   selectedFilter === "name-asc"
-    //     ? a.companyName.localeCompare(b.companyName)
-    //     : a.distance - b.distance
-    // );
 
     setEcopoints({ franchises: data });
     setLoading(false);

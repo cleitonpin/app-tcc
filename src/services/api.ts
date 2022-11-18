@@ -1,7 +1,8 @@
 import axios from "axios";
+import { APP_ENV_API_URL } from "@env";
 
 const api = axios.create({
-  baseURL: "http://192.168.0.6:8080/api",
+  baseURL: APP_ENV_API_URL,
 });
 
 export default api;

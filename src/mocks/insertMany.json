@@ -1,0 +1,344 @@
+[
+  {
+    "email": "test_@testemail.com.br",
+    "cnpj": 68693669000140,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "Av. Fernandes Lima, 3204",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 3204,
+      "state": "AL",
+      "zip": "57052-403",
+      "district": "Gruta de Lourdes",
+      "complement": "Loja 1",
+      "coordinates": {
+        "latitude": -9.6206008,
+        "longitude": -35.7388089
+      }
+    }
+  },
+  {
+    "email": "test_1@testemail.com.br",
+    "cnpj": 57218070000138,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "Av. Menino Marcelo, 10440",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 10440,
+      "state": "AL",
+      "zip": "57046-000",
+      "district": "Barro Duro",
+      "complement": "Loja 2",
+      "coordinates": {
+        "latitude": -9.6104358,
+        "longitude": -35.7203608
+      }
+    }
+  },
+  {
+    "email": "test_2@testemail.com.br",
+    "cnpj": 36905151000136,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "Av. Fernandes Lima, 2468",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 2468,
+      "state": "AL",
+      "zip": "57055-000 ",
+      "district": "Farol",
+      "complement": "Loja 3",
+      "coordinates": {
+        "latitude": -9.6285204,
+        "longitude": -35.7374348
+      }
+    }
+
+  },
+  {
+    "email": "test_3@testemail.com.br",
+    "cnpj": 87311114000130,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "Av. Fernandes Lima, 751",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 751,
+      "state": "AL",
+      "zip": "57055-000",
+      "district": "Farol",
+      "complement": "Loja 4",
+      "coordinates": {
+        "latitude": -9.6442572,
+        "longitude": -35.7349616
+      }
+    }
+  },
+  {
+    "email": "test_4@testemail.com.br",
+    "cnpj": 54007452000124,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "Av. Fernandes Lima, 452",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 452,
+      "state": "AL",
+      "zip": "57050-000",
+      "district": "Farol",
+      "complement": "Loja 5",
+      "coordinates": {
+        "latitude": -9.6465768,
+        "longitude": -35.7338986
+      }
+    }
+  },
+  {
+    "email": "test_5@testemail.com.br",
+    "cnpj": 67083021000199,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "Av. Comendador Gustavo Paiva, 2990",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 2990,
+      "state": "AL",
+      "zip": "57037-901",
+      "district": "Mangabeiras",
+      "complement": "Loja 6",
+      "coordinates": {
+        "latitude": -9.6375194,
+        "longitude": -35.703775
+      }
+    }
+  },
+  {
+    "email": "test_5@testemail.com.br",
+    "cnpj": 70885327000173,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "Rua José Luiz Calazans, 145",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 2990,
+      "state": "AL",
+      "zip": "57035-850",
+      "district": "Jatiúca",
+      "complement": "Loja 7",
+      "coordinates": {
+        "latitude": -9.643457,
+        "longitude": -35.7006411
+      }
+    }
+  },
+  {
+    "email": "test_6@testemail.com.br",
+    "cnpj": 37091636000104,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "Av. Alm. Álvaro Calheiros - Jatiúca",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 0,
+      "state": "AL",
+      "zip": "57035-558",
+      "district": "Jatiúca",
+      "complement": "Loja 8",
+      "coordinates": {
+        "latitude": -9.6453705,
+        "longitude": -35.7051902
+      }
+    }
+  },
+  {
+    "email": "test_7@testemail.com.br",
+    "cnpj": 12363445000115,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "Av. Dr. Antônio Gomes de Barros - Jatiúca",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 0,
+      "state": "AL",
+      "zip": "57036-971",
+      "district": "Jatiúca",
+      "complement": "Loja 9",
+      "coordinates": {
+        "latitude": -9.6509842,
+        "longitude": -35.7018125
+      }
+    }
+  },
+  {
+    "email": "test_8@testemail.com.br",
+    "cnpj": 23272706000108,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "Av. Dr. Júlio Marques Luz, 790 - Jatiúca",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 790,
+      "state": "AL",
+      "zip": "57035-700",
+      "district": "Jatiúca",
+      "complement": "Loja 10",
+      "coordinates": {
+        "latitude": -9.6531808,
+        "longitude": -35.706244
+      }
+    }
+  },
+  {
+    "email": "test_9@testemail.com.br",
+    "cnpj": 62755527000183,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "R. Dep. José Lages, 267 - Ponta Verde",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 0,
+      "state": "AL",
+      "zip": "57035-330",
+      "district": "Ponta Verde",
+      "complement": "Loja 11",
+      "coordinates": {
+        "latitude": -9.6568944,
+        "longitude": -35.7016262
+      }
+    }
+  },
+  {
+    "email": "test_10@testemail.com.br",
+    "cnpj": 75843888000123,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "R. Prof. Sandoval Arroxelas, 714 - Ponta Verde",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 714,
+      "state": "AL",
+      "zip": "57035-230",
+      "district": "Ponta Verde",
+      "complement": "Loja 12",
+      "coordinates": {
+        "latitude": -9.6584909,
+        "longitude": -35.7048457
+      }
+    }
+  },
+  {
+    "email": "test_11@testemail.com.br",
+    "cnpj": 17591347000103,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "R. Eng. Mario de Gusmão, 634 - Ponta Verde",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 634,
+      "state": "AL",
+      "zip": "57035-000",
+      "district": "Ponta Verde",
+      "complement": "Loja 13",
+      "coordinates": {
+        "latitude": -9.6621455,
+        "longitude": -35.7029699
+      }
+    }
+
+  },
+  {
+    "email": "test_12@testemail.com.br",
+    "cnpj": 53781245000160,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "R. Júlio Plech Filho, 242-312 - Pajuçara",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 312,
+      "state": "AL",
+      "zip": "57030-003",
+      "district": "Pajuçara",
+      "complement": "Loja 14",
+      "coordinates": {
+        "latitude": -9.6640055,
+        "longitude": -35.7113172
+      }
+    }
+  },
+  {
+    "email": "test_13@testemail.com.br",
+    "cnpj": 49370956000174,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "Av. Siqueira Campos, 380 - Prado",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 380,
+      "state": "AL",
+      "zip": "57010-003",
+      "district": "Prado",
+      "complement": "Loja 15",
+      "coordinates": {
+        "latitude": -9.6673848,
+        "longitude": -35.7442644
+      }
+    }
+  },
+  {
+    "email": "test_14@testemail.com.br",
+    "cnpj": 32101634000127,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "R. do Comércio, 291 - Centro",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 291,
+      "state": "AL",
+      "zip": "57020-000",
+      "district": "Centro",
+      "complement": "Loja 16",
+      "coordinates": {
+        "latitude": -9.6640516,
+        "longitude": -35.7378239
+      }
+    }
+  },
+  {
+    "email": "test_15@testemail.com.br",
+    "cnpj": 18849481000116,
+    "companyName": "Drogasil",
+    "password": "123456",
+    "address": {
+      "street": "Av. Antônio Lisboa de Amorim, S/N - Antares",
+      "city": "Maceió",
+      "uf": "AL",
+      "number": 0,
+      "state": "AL",
+      "zip": "57085-160",
+      "district": "Antares",
+      "complement": "Loja 17",
+      "coordinates": {
+        "latitude": -9.5623129,
+        "longitude": -35.7452317
+      }
+    }
+  }
+]
