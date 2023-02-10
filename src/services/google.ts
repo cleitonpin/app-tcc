@@ -36,7 +36,7 @@ export const fetchRoute = async (
   destination: string,
   mode?: string
 ) => {
-  const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${APP_ENV_GOOGLE_API_KEY}&mode${
+  const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=AIzaSyDTzZPR-zzATP1d_odo0S2urNZCP3HlfnY&mode=${
     mode || "driving"
   }`;
   const response = await fetch(url);

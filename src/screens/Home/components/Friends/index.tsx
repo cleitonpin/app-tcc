@@ -1,4 +1,4 @@
-import { View, Image as Img, StyleSheet } from "react-native";
+import { View, Image as Img, Linking } from "react-native";
 import styled from "styled-components/native";
 import { Text, Image } from "../../../../global/styles";
 
@@ -47,6 +47,20 @@ const Friends: React.FC<any> = () => {
           população.
         </Text>
       </Box>
+
+      <View style={{ marginTop: 20 }}>
+        <Text
+          textAlign="center"
+          color="white"
+          onPress={() =>
+            Linking.openURL(
+              "https://admin-descart-farm-app.vercel.app/register"
+            )
+          }
+        >
+          Cadastre sua empresa
+        </Text>
+      </View>
     </Container>
   );
 };

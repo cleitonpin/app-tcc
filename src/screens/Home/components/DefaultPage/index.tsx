@@ -1,6 +1,5 @@
 import { LocationObject } from "expo-location";
 import { View } from "react-native";
-import MapView, { Marker } from "react-native-maps";
 import { Loader } from "../../../../components/Loader";
 import { Text } from "../../../../global/styles";
 import Map from "../../../Map";

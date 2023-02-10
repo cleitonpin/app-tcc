@@ -1,4 +1,4 @@
-import MapView, { Marker, Polyline } from "react-native-maps";
+import MapView, { Marker, Polyline, PROVIDER_GOOGLE } from "react-native-maps";
 import { View } from "react-native";
 import { Fragment, useEffect, useState } from "react";
 import { FranchiseData, getFranchises } from "../../services/franchises";
@@ -58,6 +58,7 @@ const Map: React.FC<MapProps> = ({ route, height }) => {
       {location && (
         <MapView
           style={{ width: "100%", height: height || "100%" }}
+          provider={PROVIDER_GOOGLE}
           initialRegion={{
             latitude: route?.params?.lat ?? location.coords.latitude,
             longitude: route?.params?.long ?? location.coords.longitude,

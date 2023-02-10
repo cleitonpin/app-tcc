@@ -27,6 +27,11 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyCD13ImLTMCTMDfNOFwpvsZGVR9Du2HoVg"
+        }
+      },
       "package": "com.pandah.descartfarm"
     },
     "web": {
