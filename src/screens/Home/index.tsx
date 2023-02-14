@@ -17,6 +17,7 @@ import { ModalContent, ModalView } from "./style";
 import useGetLocation from "../../hooks/useGetLocation";
 import { DefaultPage } from "./components/DefaultPage";
 import styled from "styled-components/native";
+import Complaint from "./components/Complaint";
 
 interface HomeProps {}
 
@@ -57,7 +58,7 @@ const CARDS = [
   {
     title: "Faça sua denúncia",
     value: 6,
-    icon: require("../../assets/denuncia.png"),
+    icon: require("../../assets/gardening.png"),
   },
 ];
 
@@ -65,6 +66,8 @@ const renderContent = (
   key: number,
   location: Location.LocationObject | null
 ) => {
+  console.log(key);
+
   switch (key) {
     case 0:
       return <DefaultPage location={location} />;
@@ -77,29 +80,7 @@ const renderContent = (
     case 4:
       return <Recycling />;
     case 6:
-      <ContainerPage>
-        <Text fontSize="24px" color="white" style={{ marginTop: 10 }}>
-          Curiosidades
-        </Text>
-        <View style={{ backgroundColor: "#f0f0f0" }}>
-          <Text fontSize="16px" color="white" style={{ marginTop: 10 }}>
-            Secretaria de desenvolvimento Territorial e Meio Ambiente - SEDET
-          </Text>
-          <Text fontSize="16px" color="white" style={{ marginTop: 10 }}>
-            Telefone: (82) 3312-5200
-          </Text>
-          <Text fontSize="16px" color="white" style={{ marginTop: 10 }}>
-            Disque Denúncia: (82) 3312-5204
-          </Text>
-          <Text fontSize="16px" color="white" style={{ marginTop: 10 }}>
-            Denúncia ambiental: Email:
-            coord.fiscalizacaoambiental@sedet.maceio.al.gov.br
-          </Text>
-          <Text fontSize="16px" color="white" style={{ marginTop: 10 }}>
-            Telefone: (82) 3312-5242
-          </Text>
-        </View>
-      </ContainerPage>;
+      return <Complaint />;
 
     default:
       return <Text>Erro</Text>;
